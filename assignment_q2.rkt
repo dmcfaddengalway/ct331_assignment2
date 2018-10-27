@@ -1,3 +1,8 @@
+;; Daniel McFadden (16280010)
+;; CT331: Programming Pradigms
+;; Dr. Finlay Smith
+;; 8 November 2018
+
 #lang racket
 
 ;This is an example implementation of ins_beg,
