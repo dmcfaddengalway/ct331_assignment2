@@ -66,4 +66,9 @@
                  (left_tree binary_search_tree)
                  (insert item (right_tree binary_search_tree))))
         (else binary_search_tree))
-  )
+)
+
+;; Take a list and insert into a tree
+(define (insert_list lst binary_search_tree)
+  (cond ((is_empty binary_search_tree)))
+)
