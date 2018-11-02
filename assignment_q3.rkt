@@ -5,6 +5,15 @@
 
 #lang racket
 
+(provide left_tree)
+(provide right_tree)
+(provide value)
+(provide is_empty)
+
+(provide order)
+(provide check)
+(provide insert)
+
 ;; HELPER FUNCTIONS
 (define (left_tree bst) (car bst))
 
