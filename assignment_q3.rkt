@@ -9,6 +9,7 @@
 (provide right_tree)
 (provide value)
 (provide is_empty)
+(provide create)
 
 (provide order)
 (provide check)
@@ -23,6 +24,9 @@
 
 (define (is_empty bst)
   (null? bst))
+
+(define (create left-sub val right-sub)
+  (list left-sub val right-sub))
 
 ;; Display sorted order of a binary search tree
 (define (order binary_search_tree)
