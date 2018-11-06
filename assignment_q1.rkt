@@ -5,18 +5,17 @@
 
 #lang racket
 
-;; Creates list of two numbers
+;; A) Creates list of two numbers
 (cons 9 2)
 
-;; Creates list of 3 numbers, needs extra '() as cons always needs two arguemnts
-(cons '(1 2 3) '() )
+;; B) Creates list of 3 numbers, needs extra '() as cons always needs two arguemnts
+(cons 1 (cons 2 (cons 3 '())))
 
-;;UNSURE ABOUT THESE YET
-;; Create a list with a string, number and list of 3 numbers with only cons
-(cons '("Daniel" 5 '(1 2 3)) '())
+;; C) Create a list with a string, number and list of 3 numbers with only cons
+(cons "Daniel" (cons 1 (cons (cons 2 (cons 3 (cons 4 empty))) empty)))
 
-;; Create a list with a string, number, and list of 3 numbers with only list
-'("Joan" 2 '(1 2 3) )
+;; D) Create a list with a string, number, and list of 3 numbers with only list
+(list "Joan" 2 '(1 2 3) )
 
-;; Create a list with a string, number, and list of 3 numbers with only append
-(append '("Emma" 8 '(1 2 3) ) )
+;; E) Create a list with a string, number, and list of 3 numbers with only append
+(append '("Emma" 8) '(1 2 3) )
