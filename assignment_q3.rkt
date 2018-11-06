@@ -29,14 +29,18 @@
   (list left-sub val right-sub))
 
 ;; A) Display sorted order of a binary search tree
-(define (order binary_search_tree)
-  (cond
-    ((is_empty binary_search_tree))
-        (else
-         (order (left_tree binary_search_tree))
-         (display (value binary_search_tree)) (newline)
-         (order (right_tree binary_search_tree))))
-)
+(define (order tree)
+  (begin
+    (cond
+      [(empty? (car tree)) (display " ")]
+      [else (order (car tree))]
+      )
+    (display (car (cdr tree)))
+    (cond
+      [(empty? (caddr tree)) (display " ")]
+      [else (order (car (cdr (cdr tree))))]
+      )
+    ))
 
 (display "A) ")(order '((() 1 ()) 3 ((() 5 ()) 7 (() 9 ()))))
 
@@ -76,12 +80,12 @@
         (else binary_search_tree))
 )
 
-(display "C: \n Before Insertion)")
-(define tree '((() 3 ()) 5 ((() 7 ()) 9 (() 11 ()))))
+(display "C) \n  before insertion")
+(define tree '((() 1 ()) 3 ((() 4 ()) 6 (() 7 ()))))
 (order tree)
-(display "\n  After Insertion: ")
-(define treeFree (insert 8 tree))
-(order treeFree)
+(display "\n  after insertion: ")
+(define tree4 (insert 8 tree))
+;;(order tree4)
 
 ;; D) Take a list and insert into a tree
 (define (insert_list lst binary_search_tree)
@@ -99,7 +103,7 @@
 )
 
 (display "E) ")
-(tree-sort '((5 12 6 9 3 4 17 8))
+(tree_sort '(5 12 6 9 3 4 17 8))
 
 ;; F) Implement higher order tree sort function
 (define (higher_order_sort lst func)
@@ -109,7 +113,7 @@
 (define (insert_list_to_tree lst tree fn)
   (cond
    [(empty? lst) tree]
-   [else (list_into_tree (cdr lst) (el_into_tree (car lst) tree fn) fn)]
+   [else (insert_list_to_tree (cdr lst) (el_into_tree (car lst) tree fn) fn)]
 ))
 
 (define (el_into_tree item lst fn)
@@ -121,9 +125,9 @@
 ))
 
 (display "\nF: \n  Ascending) ")
-(higher_tree_sort '(5 12 6 9 3 4 17 8) <)
+(higher_order_sort '(5 12 6 9 3 4 17 8) <)
 (display "\n  Descending) ")
-(higher_tree_sort '(5 12 6 9 3 4 17 8) >)
+(higher_order_sort '(5 12 6 9 3 4 17 8) >)
 (display "\n  Ascending based on last digit) ")
 
 (define (last_digit num1 num2)

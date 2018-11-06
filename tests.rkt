@@ -13,9 +13,14 @@
 (define (runTests)
   (begin
     (display "Running tests...\n")
-    ;begin calling test functions
+    
     (printf "1: ~a" (test_ins_beg1))
-    ;end calling test functions
+    (printf "2: ~a\n" (ins_end "a" '("b" "c" "d")))
+    (printf "3: ") (cout_top_level '("a" '("b" "c" "d") "c"))
+    (printf "\n4: ") (count_instances "e" '("e" "f" "g" "e" "g" "h" "e" "f" "g" "e"))
+    (printf "\n5: ") (count_instances_tr "c" '("a" "b" "c" "a" "c" "d" "a" "b" "c" "d" "a" "e" "c"))
+    (printf "\n6: ") (count_instances_deep 3 '( 1 2 3 (1 3 4) 1 2 3 1 3 6 3 5 3))
+    
     (display "\nTests complete!\n")))
 
 ;Begin test functions
