@@ -40,9 +40,10 @@
       [(empty? (caddr tree)) (display " ")]
       [else (order (car (cdr (cdr tree))))]
       )
-    ))
+))
 
-(display "A) ")(order '((() 1 ()) 3 ((() 5 ()) 7 (() 9 ()))))
+(display "A) ")
+(order '((() 1 ()) 3 ((() 5 ()) 7 (() 9 ()))))
 
 ;; B) Display true or false if item is in the tree
 (define (check item binary_search_tree)
@@ -80,10 +81,10 @@
         (else binary_search_tree))
 )
 
-(display "C) \n  before insertion")
+(display "C) \n Before insertion:")
 (define tree '((() 1 ()) 3 ((() 4 ()) 6 (() 7 ()))))
 (order tree)
-(display "\n  after insertion: ")
+(display "\n After insertion:")
 (define tree4 (insert 8 tree))
 ;;(order tree4)
 
@@ -91,7 +92,7 @@
 (define (insert_list lst binary_search_tree)
   (cond ((is_empty binary_search_tree))
        [(empty? lst) binary_search_tree]
-       [else (insert_list (cdr lst) (insert_list (car lst) binary_search_tree))])
+       [else (insert_list (cdr lst) (insert (car lst) binary_search_tree))])
 )
 
 (display "\nD) ")
@@ -103,7 +104,7 @@
 )
 
 (display "E) ")
-(tree_sort '(5 12 6 9 3 4 17 8))
+;;(tree_sort '(5 12 6 9 3 4 17 8))
 
 ;; F) Implement higher order tree sort function
 (define (higher_order_sort lst func)
@@ -124,11 +125,11 @@
     [else (list (car lst) (cadr lst) (el_into_tree item (caddr lst) fn))]
 ))
 
-(display "\nF: \n  Ascending) ")
+(display "\nF) \n Ascending: ")
 (higher_order_sort '(5 12 6 9 3 4 17 8) <)
-(display "\n  Descending) ")
+(display "\n Descending: ")
 (higher_order_sort '(5 12 6 9 3 4 17 8) >)
-(display "\n  Ascending based on last digit) ")
+(display "\n Ascending based on last digit: ")
 
 (define (last_digit num1 num2)
   (< (modulo num1 10) (modulo num2 10)))
