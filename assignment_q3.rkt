@@ -86,7 +86,7 @@
 (order tree)
 (display "\n After insertion:")
 (define tree4 (insert 8 tree))
-;;(order tree4)
+(order tree4)
 
 ;; D) Take a list and insert into a tree
 (define (insert_list lst binary_search_tree)
