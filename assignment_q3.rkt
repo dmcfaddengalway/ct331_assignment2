@@ -11,7 +11,8 @@
 (provide is_empty)
 (provide create)
 
-(provide sortTree)
+(provide order)
+(provide tree_sort)
 (provide check)
 (provide insert)
 
@@ -29,13 +30,18 @@
   (list left-sub val right-sub))
 
 ;; A) Display sorted sortTree of a binary search tree
-(define (sortTree tree);sort left then sort right
- (begin(cond [(not (empty?(left_tree tree))) (sortTree (left_tree tree))])
-   (printf "~a " (cadr tree));
-   (cond [(not (empty?(right_tree tree))) (sortTree (right_tree tree))])))
+(define (order binary_search_tree)
+  (cond
+    ((is_empty binary_search_tree))
+        (else
+         (order (left_tree binary_search_tree))
+         (display (value binary_search_tree)) (newline)
+         (order (right_tree binary_search_tree))))
+)
+
 
 (display "A) ")
-(sortTree '((() 1 ()) 3 ((() 5 ()) 7 (() 9 ()))))
+(order '((() 1 ()) 3 ((() 5 ()) 7 (() 9 ()))))
 
 ;; B) Display true or false if item is in the tree
 (define (check item binary_search_tree)
@@ -66,10 +72,10 @@
 
 (display "C) \n Before insertion: ")
 (define tree '((() 1 ()) 3 ((() 4 ()) 6 (() 7 ()))))
-(sortTree tree)
+(order tree)
 (display "\n After insertion: ")
 (define tree4 (insert 5 tree))
-(sortTree tree4)
+(order tree4)
 
 ;; D) Take a list and insert into a tree
 (define (insert_list lst binary_search_tree)
@@ -83,38 +89,39 @@
 
 ;; E) Implement a tree sort algorithm
 (define (tree_sort lst)
-  (sortTree (insert_list lst '()))
+  (order (insert_list lst '()))
 )
 
 (display "E) ")
-(tree_sort '(5 12 6 9 3 4 17 8))
+;;(define tree_sort lst)
+;;(traverse (build lst))
 
 ;; F) Implement higher sortTree tree sort function
-(define (higher_sortTree_sort lst func)
-   (sortTree (insert_list_to_tree lst '() func))
+(define (higher_order_sort lst func)
+   (order (insert_list_to_tree lst '() func))
 )
 
 (define (insert_list_to_tree lst tree func)
   (cond
    [(empty? lst) tree]
-   [else (insert_list_to_tree (cdr lst) (el_into_tree (car lst) tree func) func)]
+   [else (insert_list_to_tree (cdr lst) (ele_into_tree (car lst) tree func) func)]
 ))
 
-(define (el_into_tree item lst func)
+(define (ele_into_tree item lst func)
   (cond
     [(empty? lst) (append lst (list '() item '()))]
     [(equal? item (cadr lst)) "item found in tree"]
-    [(func item (cadr lst)) (list (el_into_tree item (car lst) func) (cadr lst) (caddr lst))]
-    [else (list (car lst) (cadr lst) (el_into_tree item (caddr lst) func))]
+    [(func item (cadr lst)) (list (ele_into_tree item (car lst) func) (cadr lst) (caddr lst))]
+    [else (list (car lst) (cadr lst) (ele_into_tree item (caddr lst) func))]
 ))
 
 (display "\nF) \n Ascending: ")
-(higher_sortTree_sort '(5 12 6 9 3 4 17 8) <)
+(higher_order_sort '(5 12 6 9 3 4 17 8) <)
 (display "\n Descending: ")
-(higher_sortTree_sort '(5 12 6 9 3 4 17 8) >)
+(higher_order_sort '(5 12 6 9 3 4 17 8) >)
 (display "\n Ascending based on last digit: ")
 
 (define (last_digit num1 num2)
   (< (modulo num1 10) (modulo num2 10)))
 
-(higher_sortTree_sort '(5 12 6 9 3 4 17 8) last_digit)
+(higher_order_sort '(5 12 6 9 3 4 17 8) last_digit)
